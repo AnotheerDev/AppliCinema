@@ -1,6 +1,6 @@
 <?php
 
-use Controller\cinemaController;
+namespace Model;
 
 abstract class Connect{
 
