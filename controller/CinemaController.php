@@ -11,14 +11,10 @@ class CinemaController {
         include 'view/home.php';
     }
 
+
     public function showFilms() {
-        // Logique pour afficher la vue "films"
-        include 'view/films.php';
-    }
-
-
-    public function listFilms() {
         $pdo = Connect::seConnecter();
+        // var_dump($pdo);die;  
         $requete = $pdo -> query("
             SELECT titre, dateSortie
             FROM film
