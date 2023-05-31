@@ -7,33 +7,36 @@
     <meta name="viewport" content="width=$, initial-scale=1.0">
         <!-- link à ajouter dans le head pour faire fonctionner bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="/public/css/style.css">
     <title><?php $title; ?></title>
 </head>
 
 <body>
     <ul class="nav justify-content-center">
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="index.php?action=home">HOME</a>
+            <a class="nav-link active text-dark" aria-current="page" href="index.php?action=home">HOME</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="index.php?action=films">FILMS</a>
+            <a class="nav-link active text-dark" aria-current="page" href="index.php?action=films">FILMS</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">ACTEURS - REALISATEURS</a>
+            <a class="nav-link active text-dark" href="#">ACTEURS - REALISATEURS</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">GENRE</a>
+            <a class="nav-link active text-dark" href="#">GENRE</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">AJOUT CASTING - STARS</a>
+            <a class="nav-link active text-dark" href="#">AJOUT CASTING - STARS</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">AJOUT FILM</a>
+            <a class="nav-link active text-dark" href="#">AJOUT FILM</a>
         </li>
     </ul>
 
 
-    <?= $content ?>
+    <div class="container">
+        <?= $content ?>
+    </div>
 
 
 
