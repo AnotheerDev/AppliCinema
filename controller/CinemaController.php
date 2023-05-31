@@ -23,6 +23,15 @@ class CinemaController {
     }
 
 
+    public function showStars() {
+        // Logique pour afficher la vue "home"
+        $pdo = Connect::seConnecter();
+        $requete = $pdo -> query("
+            SELECT CONCAT (prenom,' ', nom) as nom
+            FROM personne
+        ");
+        require 'view/stars.php';
+    }
 
 
 

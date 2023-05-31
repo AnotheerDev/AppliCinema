@@ -17,5 +17,9 @@ if (isset($_GET["action"])) {
         case "films":
             $ctrlCinema->showFilms();
             break;
+        
+        case "stars":
+            $ctrlCinema->showStars();
+            break;
     }
 }
