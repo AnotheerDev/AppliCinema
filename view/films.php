@@ -17,13 +17,13 @@ ob_start();
         foreach ($requete->fetchAll() as $film) { ?>
             <tr>
                 <td><a href="#" data-toggle="modal" data-target="#filmModal"><?= $film["titre"] ?></a></td>
-
                 <td><?= $film["dateSortie"] ?></td>
             </tr>
         <?php } ?>
     </tbody>
 </table>
 
+<!-- MODAL -->
 <div class="modal fade" id="filmModal" tabindex="-1" role="dialog" aria-labelledby="filmModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
