@@ -7,6 +7,7 @@ spl_autoload_register(function ($class_name) {
 });
 
 $ctrlCinema = new CinemaController();
+$id = (isset($_GET["id"])) ? $_GET["id"] : null;
 
 if (isset($_GET["action"])) {
     switch ($_GET["action"]) {
@@ -20,6 +21,10 @@ if (isset($_GET["action"])) {
 
         case "stars":
             $ctrlCinema->showStars();
+            break;
+
+        case "filmDetails":
+            $ctrlCinema->showFilmDetails($id);
             break;
     }
 }
