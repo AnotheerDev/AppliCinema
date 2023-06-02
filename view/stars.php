@@ -1,5 +1,5 @@
 <?php
-    ob_start();
+ob_start();
 ?>
 
 <p class="uk-label uk-label-warning">Il y a <?= $requete->rowCount() ?> stars</p>
@@ -12,11 +12,11 @@
     </thead>
     <tbody>
         <?php
-            foreach($requete->fetchAll() as $star) { ?>
+        foreach ($requete->fetchAll() as $personne) { ?>
             <tr>
-                <td><?= $star["nom"]?></td>
+                <td><a href="index.php?action=personneDetails&id=<?= $personne["idPersonne"] ?>"><?= $personne["nom"] ?></a></td>
             </tr>
-            <?php } ?>
+        <?php } ?>
     </tbody>
 </table>
 

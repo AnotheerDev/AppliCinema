@@ -15,7 +15,7 @@ ob_start();
         <?php
         foreach ($requete->fetchAll() as $film) {?>
             <tr>
-                <td><a href="index.php?action=filmDetails&id=<?= $film['idFilm'] ?>"><?= $film["titre"] ?></a></td>
+                <td><a href="index.php?action=filmDetails&id=<?= $film["idFilm"] ?>"><?= $film["titre"] ?></a></td>
                 <td><?= date('Y', strtotime($film["dateSortie"])) ?></td>
             </tr>
         <?php } ?>
