@@ -1,5 +1,4 @@
 <?php
-session_start();
 ob_start();
 ?>
 
@@ -14,9 +13,10 @@ ob_start();
     </thead>
     <tbody>
         <?php
-        foreach ($requete->fetchAll() as $film) { ?>
+        foreach ($requete->fetchAll() as $film) {
+            var_dump($film) ?>
             <tr>
-                <td><?= $film["titre"] ?></td>
+                <td><a href="index.php?action=filmDetails&id='<?php $film['idFilm'] ?>'"><?= $film["titre"] ?></a></td>
                 <td><?= date('Y', strtotime($film["dateSortie"])) ?></td>
             </tr>
         <?php } ?>
