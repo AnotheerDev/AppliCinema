@@ -55,18 +55,19 @@ class CinemaController
         // Logique pour obtenir les détails du film à partir de l'ID
         $pdo = Connect::seConnecter();
         $requete = $pdo->prepare("
-            SELECT *
+            SELECT * , CONCAT(prenom, ' ', nom) AS nom
             FROM film
+            INNER JOIN realisateur ON film.idRealisateur = realisateur.idRealisateur
+            INNER JOIN personne ON realisateur.idPersonne = personne.idPersonne
             WHERE idFilm = :id
         ");
         $requete->bindParam(':id', $id, \PDO::PARAM_INT);
         $requete->execute();
         $film = $requete->fetch();
-        var_dump($film);
+        // $data = [
+        //     'film' => $film
+        // ];
 
-        $data = [
-            'film' => $film
-        ];
         // Afficher la vue des détails du film
         require 'view/filmDetails.php';
     }
