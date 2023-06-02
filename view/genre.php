@@ -2,6 +2,8 @@
 ob_start();
 ?>
 
+<p class="uk-label uk-label-warning">Il y a <?= $requete->rowCount() ?> genres :</p>
+
 <table class="uk-label uk-label-stripped">
     <thead>
         <tr>
@@ -10,9 +12,9 @@ ob_start();
     </thead>
     <tbody>
         <?php
-        foreach ($requete->fetchAll() as $genre) {?>
+        foreach ($requete->fetchAll() as $genre) { ?>
             <tr>
-                <td><?= $genre["nom"] ?></td>
+                <td><a href="index.php?action=genreDetails&id=<?= $genre["idGenre"] ?>"><?= $genre["nom"] ?></a></td>
             </tr>
         <?php } ?>
     </tbody>

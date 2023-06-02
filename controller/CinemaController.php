@@ -112,4 +112,31 @@ class CinemaController
         $requete->execute();
         require "view/genre.php";
     }
+
+
+    public function showGenreDetails($id)
+    {
+        // Valider et filtrer l'ID pour éviter les attaques par injection SQL
+        $id = filter_var($id, FILTER_VALIDATE_INT);
+        // if (!$id) {
+        //     // Gérer l'erreur si l'ID n'est pas valide
+        //     // Par exemple, rediriger vers une page d'erreur
+        //     header("Location: home.php"); // ajouter une page error.php
+        //     exit;
+
+        // Logique pour obtenir les détails du  à partir de l'ID
+        $pdo = Connect::seConnecter();
+        $requete = $pdo->prepare("
+                SELECT * 
+                FROM genre
+                WHERE genre.idGenre = :id
+            ");
+        $requete->bindParam(':id', $id, \PDO::PARAM_INT);
+        $requete->execute();
+        $genre = $requete->fetch();
+
+
+        // Afficher la vue des détails
+        require 'view/genreDetails.php';
+    }
 }
