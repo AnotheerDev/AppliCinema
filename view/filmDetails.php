@@ -2,31 +2,15 @@
 ob_start();
 ?>
 
-<table class="uk-label uk-label-stripped">
-    <thead>
-        <tr>
-            <th>TITRE</th>
-            <th>DATE DE SORTIE</th>
-            <th>DUREE</th>
-            <th>SINOPSIS</th>
-            <th>NOTE</th>
-            <th>REALISATEUR</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php
-        foreach ($requete->fetchAll() as $film) { ?>
-            <tr>
-                <td><?= $film["titre"] ?></td>
-                <td><?= $film["dateSortie"] ?></td>
-                <td><?= $film["duree"] ?></td>
-                <td><?= $film["synopsis"] ?></td>
-                <td><?= $film["note"] ?></td>
-                <td><?= $film["idRealisateur"] ?></td>
-            </tr>
-        <?php } ?>
-    </tbody>
-</table>
+
+
+<h2><?= $film['titre'] ?></h2>
+<p>Date de sortie : <?= $film['dateSortie'] ?></p>
+<p>Durée : <?= $film['duree'] ?></p>
+<p>Synopsis : <?= $film['synopsis'] ?></p>
+<p>Note : <?= $film['note'] ?></p>
+<p>Réalisateur : <?= $film['idRealisateur'] ?></p>
+
 <?php
 
 $content = ob_get_clean();

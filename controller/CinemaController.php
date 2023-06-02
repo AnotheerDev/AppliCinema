@@ -46,13 +46,11 @@ class CinemaController
     {
         // Valider et filtrer l'ID pour éviter les attaques par injection SQL
         $id = filter_var($id, FILTER_VALIDATE_INT);
-
         // if (!$id) {
         //     // Gérer l'erreur si l'ID n'est pas valide
         //     // Par exemple, rediriger vers une page d'erreur
         //     header("Location: home.php"); // ajouter une page error.php
         //     exit;
-        
 
         // Logique pour obtenir les détails du film à partir de l'ID
         $pdo = Connect::seConnecter();
@@ -64,7 +62,11 @@ class CinemaController
         $requete->bindParam(':id', $id, \PDO::PARAM_INT);
         $requete->execute();
         $film = $requete->fetch();
+        var_dump($film);
 
+        $data = [
+            'film' => $film
+        ];
         // Afficher la vue des détails du film
         require 'view/filmDetails.php';
     }
