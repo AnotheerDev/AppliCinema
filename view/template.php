@@ -23,7 +23,7 @@
             <a class="nav-link active text-dark" aria-current="page" href="index.php?action=stars">ACTEURS - REALISATEURS</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active text-dark" href="#">GENRE</a>
+            <a class="nav-link active text-dark" href="index.php?action=genre">GENRE</a>
         </li>
         <li class="nav-item">
             <a class="nav-link active text-dark" href="#">AJOUT CASTING - STARS</a>

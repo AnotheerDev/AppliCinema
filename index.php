@@ -30,5 +30,9 @@ if (isset($_GET["action"])) {
         case "personneDetails":
             $ctrlCinema->showPersonneDetails($id);
             break;
+
+        case "genre":
+            $ctrlCinema->showGenre();
+            break;
     }
 }

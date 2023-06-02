@@ -100,4 +100,16 @@ class CinemaController
         // Afficher la vue des détails
         require 'view/personneDetails.php';
     }
+
+    public function showGenre()
+    {
+        $pdo = Connect::seConnecter();
+        // var_dump($pdo);die;  
+        $requete = $pdo->prepare("
+            SELECT *
+            FROM genre
+        ");
+        $requete->execute();
+        require "view/genre.php";
+    }
 }
