@@ -149,4 +149,10 @@ class CinemaController
         // Afficher la vue des détails
         require 'view/genreDetails.php';
     }
+
+
+    public function showAjoutCasting()
+    {
+        require 'view/ajoutCasting.php';
+    }
 }

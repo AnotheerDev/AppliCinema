@@ -34,9 +34,13 @@ if (isset($_GET["action"])) {
         case "genre":
             $ctrlCinema->showGenre();
             break;
-        
+
         case "genreDetails":
             $ctrlCinema->showGenreDetails($id);
+            break;
+
+        case "ajoutCasting":
+            $ctrlCinema->showAjoutCasting();
             break;
     }
 }
