@@ -39,8 +39,8 @@ if (isset($_GET["action"])) {
             $ctrlCinema->showGenreDetails($id);
             break;
 
-        case "ajoutCasting":
-            $ctrlCinema->showAjoutCasting();
+        case "ajoutStar":
+            $ctrlCinema->showAjoutStar();
             break;
     }
 }

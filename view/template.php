@@ -26,7 +26,7 @@
             <a class="nav-link active text-dark" aria-current="page" href="index.php?action=genre">GENRE</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active text-dark" aria-current="page" href="index.php?action=ajoutCasting">AJOUT CASTING - STARS</a>
+            <a class="nav-link active text-dark" aria-current="page" href="index.php?action=ajoutStar">AJOUT STARS</a>
         </li>
         <li class="nav-item">
             <a class="nav-link active text-dark" aria-current="page" href="#">AJOUT FILM</a>

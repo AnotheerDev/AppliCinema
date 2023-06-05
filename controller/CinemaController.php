@@ -151,8 +151,8 @@ class CinemaController
     }
 
 
-    public function showAjoutCasting()
+    public function showAjoutStar()
     {
-        require 'view/ajoutCasting.php';
+        require 'view/ajoutStar.php';
     }
 }
