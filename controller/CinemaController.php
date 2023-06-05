@@ -88,8 +88,8 @@ class CinemaController
         $requete = $pdo->prepare("
                 SELECT * 
                 FROM personne
-                INNER JOIN realisateur ON personne.idPersonne = realisateur.idPersonne
-                INNER JOIN acteur ON personne.idPersonne = acteur.idPersonne
+                LEFT JOIN realisateur ON personne.idPersonne = realisateur.idPersonne
+                LEFT JOIN acteur ON personne.idPersonne = acteur.idPersonne
                 WHERE personne.idPersonne = :id
             ");
         $requete->bindParam(':id', $id, \PDO::PARAM_INT);
