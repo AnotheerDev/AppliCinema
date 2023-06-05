@@ -42,5 +42,9 @@ if (isset($_GET["action"])) {
         case "ajoutStar":
             $ctrlCinema->showAjoutStar();
             break;
+
+        case "addActeur":
+            $ctrlCinema->addPersonne();
+            break;
     }
 }

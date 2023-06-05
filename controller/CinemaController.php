@@ -155,4 +155,29 @@ class CinemaController
     {
         require 'view/ajoutStar.php';
     }
+
+
+    public function addPersonne()
+    {
+        if (isset($_POST['submit'])) {
+
+            $nom = filter_input(INPUT_POST, "nom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $prenom = filter_input(INPUT_POST, "prenom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $sexe = filter_input(INPUT_POST, "sexe", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $dateNaissance = filter_input(INPUT_POST, "dateNaissance", FILTER_SANITIZE_NUMBER_INT);
+
+
+            if ($nom && $prenom && $sexe && $dateNaissance) {
+
+                $pdo = Connect::seConnecter();
+                $sqlQuery =  "INSERT INTO personne (nom,prenom,sexe,dateNaissance)
+                VALUES (:nom,:prenom,:sexe,:dateNaissance)";
+
+                $requete = $pdo->prepare($sqlQuery);
+                $requete->execute(['nom' => $nom, 'prenom' => $prenom, 'sexe' => $sexe, 'dateNaissance' => $dateNaissance]);
+            }
+        }
+
+        self::showAjoutStar();
+    }
 }
