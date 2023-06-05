@@ -124,17 +124,27 @@ class CinemaController
         //     header("Location: home.php"); // ajouter une page error.php
         //     exit;
 
-        // Logique pour obtenir les détails du  à partir de l'ID
+        // Logique pour obtenir les détails du genre à partir de l'ID
         $pdo = Connect::seConnecter();
-        $requete = $pdo->prepare("
-                SELECT * 
-                FROM genre
-                WHERE genre.idGenre = :id
-            ");
-        $requete->bindParam(':id', $id, \PDO::PARAM_INT);
-        $requete->execute();
-        $genre = $requete->fetch();
+        $requeteGenre = $pdo->prepare("
+            SELECT *
+            FROM genre
+            WHERE genre.idGenre = :id
+        ");
+        $requeteGenre->bindParam(':id', $id, \PDO::PARAM_INT);
+        $requeteGenre->execute();
+        $genre = $requeteGenre->fetch();
 
+        // Logique pour obtenir les identifiants des films du genre spécifié
+        $requeteFilms = $pdo->prepare("
+            SELECT film.idFilm
+            FROM genreFilm
+            INNER JOIN film ON genreFilm.idFilm = film.idFilm
+            WHERE idGenre = :id
+        ");
+        $requeteFilms->bindParam(':id', $id, \PDO::PARAM_INT);
+        $requeteFilms->execute();
+        $filmIds = $requeteFilms->fetchAll(\PDO::FETCH_COLUMN);
 
         // Afficher la vue des détails
         require 'view/genreDetails.php';
