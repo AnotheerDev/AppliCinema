@@ -224,6 +224,8 @@ class CinemaController
             $synopsis = filter_input(INPUT_POST, "synopsis", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $note = filter_input(INPUT_POST, "note", FILTER_SANITIZE_NUMBER_INT);
 
+            // var_dump($_POST);
+            // die;
             if ($titre && $dateSortie && $duree && $synopsis && $note) {
                 $pdo = Connect::seConnecter();
                 $sqlQuery =  "INSERT INTO film (titre ,dateSortie ,synopsis ,duree ,note)
@@ -248,6 +250,8 @@ class CinemaController
     {
         if (isset($_POST['submit'])) {
             $nom = filter_input(INPUT_POST, "nomRole", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            // var_dump($nom);
+            // die;
             if ($nom) {
                 $pdo = Connect::seConnecter();
                 $sqlQuery =  "INSERT INTO role (nom)
