@@ -1,7 +1,7 @@
 <?php
 ob_start();
 ?>
-<p>Ajouter un nouvel acteur : </p>
+<p>Ajouter une nouvelle personne : </p>
 
 <form action="index.php?action=addPersonne" method="post">
     <input type="text" name="nom" maxlength="50" placeholder="Nom">
