@@ -163,7 +163,7 @@ class CinemaController
             $nom = filter_input(INPUT_POST, "nom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $prenom = filter_input(INPUT_POST, "prenom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $sexe = filter_input(INPUT_POST, "sexe", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $dateNaissance = filter_input(INPUT_POST, "date_naissance", FILTER_SANITIZE_NUMBER_INT);
+            $dateNaissance = filter_input(INPUT_POST, "dateNaissance", FILTER_SANITIZE_NUMBER_INT);
 
             if ($nom && $prenom && $sexe && $dateNaissance) {
                 $pdo = Connect::seConnecter();
@@ -187,5 +187,34 @@ class CinemaController
     public function showAjoutFilm()
     {
         require 'view/ajoutFilm.php';
+    }
+
+
+    public function addFilm()
+    {
+        if (isset($_POST['submit'])) {
+            $titre = filter_input(INPUT_POST, "titre", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $dateSortie = filter_input(INPUT_POST, "dateSortie", FILTER_SANITIZE_NUMBER_INT);
+            $duree = filter_input(INPUT_POST, "duree", FILTER_SANITIZE_NUMBER_INT);
+            $synopsis = filter_input(INPUT_POST, "synopsis", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $note = filter_input(INPUT_POST, "note", FILTER_SANITIZE_NUMBER_INT);
+
+            if ($titre && $dateSortie && $duree && $synopsis && $note) {
+                $pdo = Connect::seConnecter();
+                $sqlQuery =  "INSERT INTO film (titre ,dateSortie ,synopsis ,duree ,note)
+                                VALUES (:titre, :dateSortie, :synopsis, :duree, :note)";
+
+                $requete = $pdo->prepare($sqlQuery);
+                $requete->execute([
+                    'titre' => $titre,
+                    'dateSortie' => $dateSortie,
+                    'synopsis' => $synopsis,
+                    'duree' => $duree,
+                    'note' => $note,
+                ]);
+            }
+        }
+
+        self::showAjoutFilm();
     }
 }
