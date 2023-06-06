@@ -52,7 +52,11 @@ if (isset($_GET["action"])) {
             break;
         
         case "addFilm":
-            $ctrlCinema->AddFilm();
+            $ctrlCinema->addFilm();
+            break;
+        
+        case"addRole":
+            $ctrlCinema->addRole();
             break;
     }
 }

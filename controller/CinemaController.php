@@ -242,4 +242,23 @@ class CinemaController
 
         self::showAjoutFilm();
     }
+
+
+    public function addRole()
+    {
+        if (isset($_POST['submit'])) {
+            $nom = filter_input(INPUT_POST, "nomRole", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            if ($nom) {
+                $pdo = Connect::seConnecter();
+                $sqlQuery =  "INSERT INTO role (nom)
+                                VALUE (:nom)";
+
+                $requete = $pdo->prepare($sqlQuery);
+                $requete->execute([
+                    'nom' => $nom
+                ]);
+            }
+        }
+        self::showAjoutStar();
+    }
 }
