@@ -43,7 +43,7 @@ if (isset($_GET["action"])) {
             $ctrlCinema->showAjoutStar();
             break;
 
-        case "addActeur":
+        case "addPersonne":
             $ctrlCinema->addPersonne();
             break;
     }
