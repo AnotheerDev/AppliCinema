@@ -164,10 +164,12 @@ class CinemaController
             $prenom = filter_input(INPUT_POST, "prenom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $sexe = filter_input(INPUT_POST, "sexe", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $dateNaissance = filter_input(INPUT_POST, "dateNaissance", FILTER_SANITIZE_NUMBER_INT);
+            $estActeur = isset($_POST['acteur']);
+            $estRealisateur = isset($_POST['realisateur']);
 
             if ($nom && $prenom && $sexe && $dateNaissance) {
                 $pdo = Connect::seConnecter();
-                $sqlQuery =  "INSERT INTO personne (nom, prenom, sexe, dateNaissance)
+                $sqlQuery = "INSERT INTO personne (nom, prenom, sexe, dateNaissance)
                                 VALUES (:nom, :prenom, :sexe, :dateNaissance)";
 
                 $requete = $pdo->prepare($sqlQuery);
@@ -177,11 +179,34 @@ class CinemaController
                     'sexe' => $sexe,
                     'dateNaissance' => $dateNaissance
                 ]);
+
+                $idPersonne = $pdo->lastInsertId(); // Récupère l'ID de la personne insérée
+
+                if ($estActeur) {
+                    $sqlQueryActeur = "INSERT INTO acteur (idPersonne)
+                                        VALUES (:idPersonne)";
+
+                    $requeteActeur = $pdo->prepare($sqlQueryActeur);
+                    $requeteActeur->execute([
+                        'idPersonne' => $idPersonne
+                    ]);
+                }
+
+                if ($estRealisateur) {
+                    $sqlQueryRealisateur = "INSERT INTO realisateur (idPersonne)
+                                            VALUES (:idPersonne)";
+
+                    $requeteRealisateur = $pdo->prepare($sqlQueryRealisateur);
+                    $requeteRealisateur->execute([
+                        'idPersonne' => $idPersonne
+                    ]);
+                }
             }
         }
 
         self::showAjoutStar();
     }
+
 
 
     public function showAjoutFilm()

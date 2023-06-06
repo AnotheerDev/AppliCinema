@@ -7,9 +7,12 @@ ob_start();
     <input type="text" name="nom" maxlength="50" placeholder="Nom">
     <input type="text" name="prenom" maxlength="50" placeholder="Prenom">
     <input type="text" name="sexe" maxlength="5" placeholder="Genre">
-    <input type="date" name="date_naissance">
+    <input type="date" name="dateNaissance">
+    <label for="acteur">Acteur :</label>
+    <input type="checkbox" name="acteur" id="acteur">
+    <label for="realisateur">Réalisateur :</label>
+    <input type="checkbox" name="realisateur" id="realisateur">
     <input type="submit" name="submit" value="Ajouter">
-
 
 
 
