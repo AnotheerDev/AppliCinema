@@ -182,4 +182,10 @@ class CinemaController
 
         self::showAjoutStar();
     }
+
+
+    public function showAjoutFilm()
+    {
+        require 'view/ajoutFilm.php';
+    }
 }

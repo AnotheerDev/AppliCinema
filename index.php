@@ -46,5 +46,8 @@ if (isset($_GET["action"])) {
         case "addPersonne":
             $ctrlCinema->addPersonne();
             break;
+        
+        case "ajoutFilm":
+            $ctrlCinema->showAjoutFilm();
     }
 }
