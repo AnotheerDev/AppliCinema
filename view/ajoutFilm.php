@@ -27,6 +27,20 @@ ob_start();
         <input type="number" name="note" placeholder="Note">
     </div>
     <div>
+        <select name="idRealisateur">
+            <?php
+            // faire une requete pour avoir le nom et prenom du réal
+            $requeteRealisateur = $pdo->query ("SELECT r.idRealisateur, p.nom, p.prenom
+                                                FROM realisateur r
+                                                JOIN personne p ON r.idPersonne = p.idPersonne;");
+            foreach ($requeteRealisateur->fetchAll() as $realisateur) { ?>
+                <option value="<?= $realisateur["idRealisateur"] ?>">
+                    <?= $realisateur["idRealisateur"] ?><?= $realisateur["nom"] ?> <?= $realisateur["prenom"] ?>
+                </option>
+            <?php } ?>
+        </select>
+    </div>
+    <div>
         <input type="submit" name="submit" value="Ajouter">
     </div>
 </form>
