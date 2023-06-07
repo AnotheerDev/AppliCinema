@@ -19,7 +19,8 @@ class CinemaController
     public function showFilms()
     {
         $pdo = Connect::seConnecter();
-        // var_dump($pdo);die;  
+        // var_dump($pdo);
+        //die;  
         $requete = $pdo->prepare("
             SELECT titre, dateSortie, idFilm
             FROM film
@@ -101,6 +102,7 @@ class CinemaController
         require 'view/personneDetails.php';
     }
 
+    // ajouter le fait de pouvoir add des genres à un film ( un film peut posseder plusieurs genre) avec des checkbox
     public function showGenre()
     {
         $pdo = Connect::seConnecter();
