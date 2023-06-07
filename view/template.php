@@ -29,7 +29,7 @@
             <a class="nav-link active text-dark" aria-current="page" href="index.php?action=ajoutStar">AJOUT STARS</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active text-dark" aria-current="page" href="index.php?action=ajoutFilm">AJOUT FILM</a>
+            <a class="nav-link active text-dark" aria-current="page" href="index.php?action=addFilm">AJOUT FILM</a>
         </li>
     </ul>
 
