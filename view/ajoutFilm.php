@@ -30,9 +30,6 @@ ob_start();
         <select name="idRealisateur">
             <?php
             // faire une requete pour avoir le nom et prenom du réal
-            $requeteRealisateur = $pdo->query ("SELECT r.idRealisateur, p.nom, p.prenom
-                                                FROM realisateur r
-                                                JOIN personne p ON r.idPersonne = p.idPersonne;");
             foreach ($requeteRealisateur->fetchAll() as $realisateur) { ?>
                 <option value="<?= $realisateur["idRealisateur"] ?>">
                     <?= $realisateur["idRealisateur"] ?><?= $realisateur["nom"] ?> <?= $realisateur["prenom"] ?>

@@ -209,15 +209,16 @@ class CinemaController
 
 
 
-    public function showAjoutFilm()
-    {
-        $pdo = Connect::seConnecter();
-        require 'view/ajoutFilm.php';
-    }
+
 
 
     public function addFilm()
     {
+        $pdo = Connect::seConnecter();
+        $requeteRealisateur = $pdo->query("SELECT r.idRealisateur, p.nom, p.prenom
+        FROM realisateur r
+        JOIN personne p ON r.idPersonne = p.idPersonne;");
+
         if (isset($_POST['submit'])) {
             $titre = filter_input(INPUT_POST, "titre", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $dateSortie = filter_input(INPUT_POST, "dateSortie", FILTER_SANITIZE_NUMBER_INT);
@@ -230,7 +231,6 @@ class CinemaController
             // die;
             // faire après le if pour voir si on passe la condition
             if ($titre && $dateSortie && $duree && $synopsis && $note && $idRealisateur) {
-                $pdo = Connect::seConnecter();
                 $sqlQuery =  "INSERT INTO film (titre ,dateSortie ,synopsis ,duree ,note ,idRealisateur)
                                 VALUES (:titre, :dateSortie, :synopsis, :duree, :note, :idRealisateur)";
 
@@ -245,8 +245,7 @@ class CinemaController
                 ]);
             }
         }
-
-        self::showAjoutFilm();
+        require 'view/ajoutFilm.php';
     }
 
 
