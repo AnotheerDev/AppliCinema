@@ -29,7 +29,6 @@ ob_start();
     <div>
         <select name="idRealisateur">
             <?php
-            // faire une requete pour avoir le nom et prenom du réal
             foreach ($requeteRealisateur->fetchAll() as $realisateur) { ?>
                 <option value="<?= $realisateur["idRealisateur"] ?>">
                     <?= $realisateur["idRealisateur"] ?><?= $realisateur["nom"] ?> <?= $realisateur["prenom"] ?>
