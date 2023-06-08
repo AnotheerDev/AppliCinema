@@ -3,8 +3,9 @@
     ob_start();
 ?>
 
-<?php
+<h1>HOME</h1>
 
+<?php
 $content = ob_get_clean();
 $title = "home";
 require "template.php";

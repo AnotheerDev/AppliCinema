@@ -1,12 +1,19 @@
 <?php
 
 use Controller\CinemaController;
+use Controller\FilmController;
+use Controller\GenreController;
+use Controller\PersonneController;
 
 spl_autoload_register(function ($class_name) {
     include $class_name . '.php';
 });
 
 $ctrlCinema = new CinemaController();
+$ctrlFilm = new FilmController();
+$ctrlPersonne = new PersonneController();
+$ctrlGenre = new GenreController();
+
 $id = (isset($_GET["id"])) ? $_GET["id"] : null;
 
 if (isset($_GET["action"])) {
@@ -16,27 +23,27 @@ if (isset($_GET["action"])) {
             break;
 
         case "films":
-            $ctrlCinema->showFilms();
-            break;
-
-        case "stars":
-            $ctrlCinema->showStars();
+            $ctrlFilm->showFilms();
             break;
 
         case "filmDetails":
-            $ctrlCinema->showFilmDetails($id);
+            $ctrlFilm->showFilmDetails($id);
+            break;
+
+        case "stars":
+            $ctrlPersonne->showStars();
             break;
 
         case "personneDetails":
-            $ctrlCinema->showPersonneDetails($id);
+            $ctrlPersonne->showPersonneDetails($id);
             break;
 
         case "genre":
-            $ctrlCinema->showGenre();
+            $ctrlGenre->showGenre();
             break;
 
         case "genreDetails":
-            $ctrlCinema->showGenreDetails($id);
+            $ctrlGenre->showGenreDetails($id);
             break;
 
         case "ajoutStar":
@@ -46,15 +53,15 @@ if (isset($_GET["action"])) {
         case "addPersonne":
             $ctrlCinema->addPersonne();
             break;
-        
+
         case "addFilm":
             $ctrlCinema->addFilm();
             break;
-        
-        case"addRole":
+
+        case "addRole":
             $ctrlCinema->addRole();
             break;
-        
+
         case "addGenreFilm":
             $ctrlCinema->addGenreFilm();
             break;
