@@ -41,7 +41,37 @@ ob_start();
     </div>
 </form>
 
+<form action="index.php?action=addGenreFilm" method="post">
+    <div>
+        <label for="film">Film :</label><br>
+        <select name="film" required>
+            <option value="">Sélectionner un film</option>
+            <?php
+            // Faire une requête pour obtenir la liste des films
 
+            foreach ($requeteFilms->fetchAll() as $film) { ?>
+                <option value="<?= $film["idFilm"] ?>">
+                    <?= $film["titre"] ?>
+                </option>
+            <?php } ?>
+        </select>
+    </div>
+
+    <div>
+        <label for="genres">Genres :</label><br>
+        <?php
+        // Faire une requête pour obtenir la liste des genres
+
+        foreach ($requeteGenres->fetchAll() as $genre) { ?>
+            <input type="checkbox" name="genres[]" value="<?= $genre["idGenre"] ?>">
+            <?= $genre["nom"] ?><br>
+        <?php } ?>
+    </div>
+
+    <div>
+        <input type="submit" name="submit" value="Ajouter">
+    </div>
+</form>
 <?php
 
 $content = ob_get_clean();
