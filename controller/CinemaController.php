@@ -116,6 +116,43 @@ class CinemaController
     }
 
 
+        public function addGenreFilm()
+    {
+        $pdo = Connect::seConnecter();
+        $requeteFilms = $pdo->query("SELECT idFilm, titre FROM film;");
+        $requeteGenres = $pdo->query("SELECT * FROM genre;");
+        // Récupérer les valeurs du formulaire
+        $idFilm = $_POST['film'];
+        $genres = $_POST['genres'];
+
+        // var_dump($_POST['film']);
+        // var_dump($_POST['genres']);
+        // die;
+
+        // // Supprimer les genres existants pour le film donné
+        $deleteQuery = "DELETE FROM genreFilm 
+                        WHERE idFilm = :idFilm";
+        $deleteStatement = $pdo->prepare($deleteQuery);
+        $deleteStatement->bindParam(':idFilm', $idFilm);
+        $deleteStatement->execute();
+
+        // Insérer les nouveaux genres pour le film donné
+        $insertQuery = "INSERT INTO genreFilm (idFilm, idGenre) 
+                        VALUES (:idFilm, :idGenre)";
+        $insertStatement = $pdo->prepare($insertQuery);
+        $insertStatement->bindParam(':idFilm', $idFilm);
+        $insertStatement->bindParam(':idGenre', $idGenre);
+
+        // Parcourir les genres sélectionnés et les insérer dans la table genreFilm
+        foreach ($genres as $idGenre) {
+            $insertStatement->execute();
+        }
+        // Rediriger vers la page genre.php
+        header("Location: index.php?action=genre");
+        exit();
+    }
+
+
     public function showGenreDetails($id)
     {
         // Valider et filtrer l'ID pour éviter les attaques par injection SQL
@@ -220,6 +257,8 @@ class CinemaController
         $requeteRealisateur = $pdo->query("SELECT r.idRealisateur, p.nom, p.prenom
         FROM realisateur r
         JOIN personne p ON r.idPersonne = p.idPersonne;");
+        $requeteFilms = $pdo->query("SELECT idFilm, titre FROM film;");
+        $requeteGenres = $pdo->query("SELECT * FROM genre;");
 
         if (isset($_POST['submit'])) {
             $titre = filter_input(INPUT_POST, "titre", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
