@@ -54,5 +54,9 @@ if (isset($_GET["action"])) {
         case"addRole":
             $ctrlCinema->addRole();
             break;
+        
+        case "addGenreFilm":
+            $ctrlCinema->addGenreFilm();
+            break;
     }
 }
