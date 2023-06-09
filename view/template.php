@@ -31,6 +31,9 @@
         <li class="nav-item">
             <a class="nav-link active text-dark" aria-current="page" href="index.php?action=addFilm">AJOUT FILM</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link active text-dark" aria-current="page" href="index.php?action=casting">CASTING</a>
+        </li>
     </ul>
 
 
