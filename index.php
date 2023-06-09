@@ -46,6 +46,10 @@ if (isset($_GET["action"])) {
             $ctrlGenre->showGenreDetails($id);
             break;
 
+        case "addGenreFilm":
+            $ctrlGenre->addGenreFilm();
+            break;
+
         case "ajoutStar":
             $ctrlCinema->showAjoutStar();
             break;
@@ -60,10 +64,6 @@ if (isset($_GET["action"])) {
 
         case "addRole":
             $ctrlCinema->addRole();
-            break;
-
-        case "addGenreFilm":
-            $ctrlCinema->addGenreFilm();
             break;
     }
 }

@@ -48,4 +48,5 @@ class FilmController
         // Afficher la vue des détails du film
         require 'view/filmDetails.php';
     }
+    
 }
