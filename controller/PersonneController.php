@@ -124,4 +124,27 @@ class PersonneController
         self::showAjoutStar();
     }
 
+
+    public function castingDetails()
+    {
+        $pdo = Connect::seConnecter();
+    
+        $requeteFilms = $pdo->query("
+            SELECT *
+            FROM film
+        ");
+        $films = $requeteFilms->fetchAll(\PDO::FETCH_ASSOC);
+    
+        $requete = $pdo->query("
+            SELECT f.titre, p.nom as acteurNom, p.prenom as acteurPrenom, r.nom as roleNom
+            FROM casting c
+            INNER JOIN film f ON c.idFilm = f.idFilm
+            INNER JOIN acteur a ON c.idActeur = a.idActeur
+            INNER JOIN role r ON c.idRole = r.idRole
+            INNER JOIN personne p ON c.idActeur = p.idPersonne
+        ");
+    
+        require "view/casting.php";
+    }
+
 }
