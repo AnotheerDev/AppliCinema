@@ -46,4 +46,82 @@ class PersonneController
         // Afficher la vue des détails
         require 'view/personneDetails.php';
     }
+
+
+    public function showAjoutStar()
+    {
+        require 'view/ajoutStar.php';
+    }
+
+
+    public function addPersonne()
+    {
+        if (isset($_POST['submit'])) {
+            $nom = filter_input(INPUT_POST, "nom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $prenom = filter_input(INPUT_POST, "prenom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $sexe = filter_input(INPUT_POST, "sexe", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $dateNaissance = filter_input(INPUT_POST, "dateNaissance", FILTER_SANITIZE_NUMBER_INT);
+            $estActeur = isset($_POST['acteur']);
+            $estRealisateur = isset($_POST['realisateur']);
+
+            if ($nom && $prenom && $sexe && $dateNaissance) {
+                $pdo = Connect::seConnecter();
+                $sqlQuery = "INSERT INTO personne (nom, prenom, sexe, dateNaissance)
+                                VALUES (:nom, :prenom, :sexe, :dateNaissance)";
+
+                $requete = $pdo->prepare($sqlQuery);
+                $requete->execute([
+                    'nom' => $nom,
+                    'prenom' => $prenom,
+                    'sexe' => $sexe,
+                    'dateNaissance' => $dateNaissance
+                ]);
+
+                $idPersonne = $pdo->lastInsertId(); // Récupère l'ID de la personne insérée
+
+                if ($estActeur) {
+                    $sqlQueryActeur = "INSERT INTO acteur (idPersonne)
+                                        VALUES (:idPersonne)";
+
+                    $requeteActeur = $pdo->prepare($sqlQueryActeur);
+                    $requeteActeur->execute([
+                        'idPersonne' => $idPersonne
+                    ]);
+                }
+
+                if ($estRealisateur) {
+                    $sqlQueryRealisateur = "INSERT INTO realisateur (idPersonne)
+                                            VALUES (:idPersonne)";
+
+                    $requeteRealisateur = $pdo->prepare($sqlQueryRealisateur);
+                    $requeteRealisateur->execute([
+                        'idPersonne' => $idPersonne
+                    ]);
+                }
+            }
+        }
+        self::showAjoutStar();
+    }
+
+
+    public function addRole()
+    {
+        if (isset($_POST['submit'])) {
+            $nom = filter_input(INPUT_POST, "nomRole", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            // var_dump($nom);
+            // die;
+            if ($nom) {
+                $pdo = Connect::seConnecter();
+                $sqlQuery =  "INSERT INTO role (nom)
+                                VALUE (:nom)";
+
+                $requete = $pdo->prepare($sqlQuery);
+                $requete->execute([
+                    'nom' => $nom
+                ]);
+            }
+        }
+        self::showAjoutStar();
+    }
+
 }

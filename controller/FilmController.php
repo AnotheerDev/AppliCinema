@@ -48,5 +48,43 @@ class FilmController
         // Afficher la vue des détails du film
         require 'view/filmDetails.php';
     }
-    
+
+
+    public function addFilm()
+    {
+        $pdo = Connect::seConnecter();
+        $requeteRealisateur = $pdo->query("SELECT r.idRealisateur, p.nom, p.prenom
+        FROM realisateur r
+        JOIN personne p ON r.idPersonne = p.idPersonne;");
+        $requeteFilms = $pdo->query("SELECT idFilm, titre FROM film;");
+        $requeteGenres = $pdo->query("SELECT * FROM genre;");
+
+        if (isset($_POST['submit'])) {
+            $titre = filter_input(INPUT_POST, "titre", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $dateSortie = filter_input(INPUT_POST, "dateSortie", FILTER_SANITIZE_NUMBER_INT);
+            $duree = filter_input(INPUT_POST, "duree", FILTER_SANITIZE_NUMBER_INT);
+            $synopsis = filter_input(INPUT_POST, "synopsis", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $note = filter_input(INPUT_POST, "note", FILTER_SANITIZE_NUMBER_INT);
+            $idRealisateur = filter_input(INPUT_POST, "idRealisateur", FILTER_SANITIZE_NUMBER_INT);
+
+            // var_dump($_POST);
+            // die;
+            // faire après le if pour voir si on passe la condition
+            if ($titre && $dateSortie && $duree && $synopsis && $note && $idRealisateur) {
+                $sqlQuery =  "INSERT INTO film (titre ,dateSortie ,synopsis ,duree ,note ,idRealisateur)
+                                VALUES (:titre, :dateSortie, :synopsis, :duree, :note, :idRealisateur)";
+
+                $requete = $pdo->prepare($sqlQuery);
+                $requete->execute([
+                    'titre' => $titre,
+                    'dateSortie' => $dateSortie,
+                    'synopsis' => $synopsis,
+                    'duree' => $duree,
+                    'note' => $note,
+                    'idRealisateur' => $idRealisateur,
+                ]);
+            }
+        }
+        require 'view/ajoutFilm.php';
+    }
 }
