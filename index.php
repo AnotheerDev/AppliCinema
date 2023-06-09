@@ -3,7 +3,7 @@
 
 // En utilisant prepare() et execute() avec une requête préparée, vous bénéficiez des avantages de la sécurité offerte par les requêtes préparées, même si la requête elle-même ne contient pas de paramètres dynamiques. ( injection sql)
 
-use Controller\CinemaController;
+use Controller\HomeController;
 use Controller\FilmController;
 use Controller\GenreController;
 use Controller\PersonneController;
