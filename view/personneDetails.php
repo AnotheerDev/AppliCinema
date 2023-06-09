@@ -4,7 +4,7 @@ ob_start();
 
 <h2><?= $personne['nom'] ?> <?= $personne['prenom'] ?></h2>
 <p>est un(e) : <?= $personne['sexe'] ?></p>
-<p>né(e) le : <?= $personne['dateNaissance'] ?></p>
+<p>né(e) le : <?= date('d / m / Y', strtotime($personne['dateNaissance'])) ?></p>
 <p>est un(e) :
     <?php if ($personne['idRealisateur'] && $personne['idActeur']) : ?>
         Acteur et réalisateur
