@@ -8,8 +8,7 @@ ob_start();
     <thread>
         <tr>
             <th>Film</th>
-            <th> Prenom </th>
-            <th> Nom </th>
+            <th> Acteur </th>
             <th>Role</th>
         </tr>
     </thread>
@@ -19,8 +18,7 @@ ob_start();
         foreach ($requete->fetchAll() as $casting) { ?>
             <tr>
                 <td><?= $casting["titre"] ?></td>
-                <td><?= $casting["acteurNom"] ?></td>
-                <td><?= $casting["acteurPrenom"] ?></td>
+                <td><?= $casting["nom"] ?></td>
                 <td><?= $casting["roleNom"] ?></td>
             </tr>
         <?php } ?>
