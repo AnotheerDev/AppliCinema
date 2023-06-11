@@ -136,7 +136,7 @@ class PersonneController
         $films = $requeteFilms->fetchAll(\PDO::FETCH_ASSOC);
     
         $requete = $pdo->query("
-            SELECT f.titre, CONCAT(p.nom,' ', p.prenom) AS nom, r.nom as roleNom
+            SELECT f.titre, CONCAT(p.nom,' ', p.prenom) AS nom, r.nom as roleNom , p.idPersonne
             FROM casting c
             INNER JOIN film f ON c.idFilm = f.idFilm
             INNER JOIN acteur a ON c.idActeur = a.idActeur
