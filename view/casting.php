@@ -17,7 +17,7 @@ ob_start();
         <?php
         foreach ($requete->fetchAll() as $casting) { ?>
             <tr>
-                <td><?= $casting["titre"] ?></td>
+                <td><a href="index.php?action=filmDetails&id=<?= $casting["idFilm"] ?>"><?= $casting["titre"] ?></a></td>
                 <td><a href="index.php?action=personneDetails&id=<?= $casting["idPersonne"] ?>"><?= $casting["nom"] ?></a></td>
                 <td><?= $casting["roleNom"] ?></td>
             </tr>
