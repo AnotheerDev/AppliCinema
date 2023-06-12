@@ -164,11 +164,11 @@ class PersonneController
 
         $personne = null; // Initialise la variable $personne à null
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['modifier'])) {
-            $idPersonne = $_POST['personne'];
-            $nom = $_POST['nom'];
-            $prenom = $_POST['prenom'];
-            $sexe = $_POST['sexe'];
-            $dateNaissance = $_POST['dateNaissance'];
+            $idPersonne = filter_input(INPUT_POST, "personne", FILTER_SANITIZE_NUMBER_INT);
+            $nom = filter_input(INPUT_POST, "nom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $prenom = filter_input(INPUT_POST, "prenom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $sexe = filter_input(INPUT_POST, "sexe", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $dateNaissance = filter_input(INPUT_POST, "dateNaissance", FILTER_SANITIZE_NUMBER_INT);
 
             // Effectuer les opérations de modification en utilisant les valeurs récupérées
             $requeteModification = $pdo->prepare("
