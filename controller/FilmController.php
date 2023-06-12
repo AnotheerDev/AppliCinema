@@ -87,4 +87,66 @@ class FilmController
         }
         require 'view/ajoutFilm.php';
     }
+
+
+    public function modifierFilm()
+    {
+        $pdo = Connect::seConnecter();
+
+        $requete = $pdo->prepare("
+            SELECT *
+            FROM film
+        ");
+        $requete->execute();
+        $films = $requete->fetchAll(\PDO::FETCH_ASSOC);
+        $requeteRealisateur = $pdo->query("SELECT r.idRealisateur, p.nom, p.prenom
+        FROM realisateur r
+        JOIN personne p ON r.idPersonne = p.idPersonne;");
+
+        $film = null; // Initialise la variable $film à null
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['modifier'])) {
+            $idFilm = filter_input(INPUT_POST, "idFilm", FILTER_SANITIZE_NUMBER_INT);
+            $titre = filter_input(INPUT_POST, "titre", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $dateSortie = filter_input(INPUT_POST, "dateSortie", FILTER_SANITIZE_NUMBER_INT);
+            $duree = filter_input(INPUT_POST, "duree", FILTER_SANITIZE_NUMBER_INT);
+            $synopsis = filter_input(INPUT_POST, "synopsis", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $note = filter_input(INPUT_POST, "note", FILTER_SANITIZE_NUMBER_INT);
+            $idRealisateur = filter_input(INPUT_POST, "idRealisateur", FILTER_SANITIZE_NUMBER_INT);
+
+
+            // var_dump($_POST);
+            // die;
+            // Effectuer les opérations de modification en utilisant les valeurs récupérées
+            $requeteModification = $pdo->prepare("
+                UPDATE film
+                SET titre = :titre, dateSortie = :dateSortie, duree = :duree, synopsis = :synopsis, note = :note, idRealisateur = :idRealisateur
+                WHERE idFilm = :idFilm
+            ");
+            $requeteModification->bindParam(':titre', $titre);
+            $requeteModification->bindParam(':dateSortie', $dateSortie);
+            $requeteModification->bindParam(':duree', $duree);
+            $requeteModification->bindParam(':synopsis', $synopsis);
+            $requeteModification->bindParam(':note', $note);
+            $requeteModification->bindParam(':idRealisateur', $idRealisateur);
+            $requeteModification->bindParam(':idFilm', $idFilm);
+            $requeteModification->execute();
+
+            // Afficher un message de succès ou rediriger vers une page de confirmation
+            echo "Les informations ont été modifiées avec succès.";
+        } elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['film'])) {
+            $idFilm = $_POST['film'];
+
+            // Effectuer une requête pour récupérer les informations du film sélectionné par son id
+            $requeteFilm = $pdo->prepare("
+                SELECT *
+                FROM film
+                WHERE idFilm = :idFilm
+            ");
+            $requeteFilm->bindParam(':idFilm', $idFilm);
+            $requeteFilm->execute();
+            $film = $requeteFilm->fetch(\PDO::FETCH_ASSOC);
+        }
+
+        require "view/modifierFilm.php";
+    }
 }

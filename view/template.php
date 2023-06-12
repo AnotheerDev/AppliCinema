@@ -52,7 +52,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="index.php?action=modifierPersonne">STARS</a>
-                        <a class="dropdown-item" href="#">FILMS</a>
+                        <a class="dropdown-item" href="index.php?action=modifierFilm">FILMS</a>
                     </div>
                 </li>
             </ul>
