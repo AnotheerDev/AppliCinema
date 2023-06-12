@@ -25,8 +25,8 @@ ob_start();
         <input type="text" name="prenom" id="prenom" value="<?= $personne['prenom'] ?>"><br>
         <label for="sexe">Sexe :</label>
         <select name="sexe" id="sexe">
-            <option value="homme" <?= $personne['sexe'] === 'Homme' ? 'selected' : '' ?>>Homme</option>
-            <option value="femme" <?= $personne['sexe'] === 'Femme' ? 'selected' : '' ?>>Femme</option>
+            <option value="Homme" <?= $personne['sexe'] === 'Homme' ? 'selected' : '' ?>>Homme</option>
+            <option value="Femme" <?= $personne['sexe'] === 'Femme' ? 'selected' : '' ?>>Femme</option>
         </select><br>
         <label for="date_naissance">Date de naissance :</label>
         <input type="date" name="dateNaissance" id="dateNaissance" value="<?= $personne['dateNaissance'] ?>"><br>
