@@ -32,8 +32,6 @@ ob_start();
         <input type="date" name="dateNaissance" id="dateNaissance" value="<?= $personne['dateNaissance'] ?>"><br>
         <!-- Ajoutez les autres champs à modifier ici -->
         <input type="submit" name="modifier" value="Modifier">
-    <?php else : ?>
-        <p>Personne introuvable.</p>
     <?php endif; ?>
 </form>
 

@@ -185,6 +185,9 @@ class PersonneController
 
             // Afficher un message de succès ou rediriger vers une page de confirmation
             echo "Les informations ont été modifiées avec succès.";
+            // Rediriger vers la page personneDetails.php
+            header("Location: index.php?action=personneDetails&id=$idPersonne");
+            exit();
         } elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['personne'])) {
             $idPersonne = $_POST['personne'];
 
@@ -198,7 +201,7 @@ class PersonneController
             $requetePersonne->execute();
             $personne = $requetePersonne->fetch(\PDO::FETCH_ASSOC);
         }
-
         require "view/modifierPersonne.php";
+        exit();
     }
 }
