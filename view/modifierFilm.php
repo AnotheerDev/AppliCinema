@@ -15,11 +15,11 @@ ob_start();
 </form>
 
 
-<form action="index.php?action=modifierFilm" method="post">
+<form action="index.php?action=modifierFilm" method="post" enctype="multipart/form-data">
     <?php if ($film) : ?>
         <h2>Modifier le film :</h2>
 
-        <input type="hidden" name="film" value="<?= $film['idFilm'] ?>">
+        <input type="hidden" name="idFilm" value="<?= $film['idFilm'] ?>">
 
         <label for="nom">titre :</label>
         <input type="text" name="titre" id="titre" value="<?= $film['titre'] ?>"><br>
@@ -35,6 +35,9 @@ ob_start();
 
         <label for="note">Note :</label>
         <input type="number" name="note" id="note" value="<?= $film['note'] ?>"><br>
+
+        <label for="file">Affiche du film</label>
+        <input type="file" name="file"><br>
 
         <select name="idRealisateur" id="idRealisateur">
             <?php

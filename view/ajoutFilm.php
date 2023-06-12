@@ -28,6 +28,7 @@ ob_start();
     </div>
     <div>
         <select name="idRealisateur">
+        <option value="">SELECTIONNER UN REALISATEUR</option>
             <?php
             foreach ($requeteRealisateur->fetchAll() as $realisateur) { ?>
                 <option value="<?= $realisateur["idRealisateur"] ?>">
@@ -35,7 +36,7 @@ ob_start();
                 </option>
             <?php } ?>
         </select>
-    </div>
+    </div>  
     <div>
         <input type="submit" name="submit" value="Ajouter">
     </div>
