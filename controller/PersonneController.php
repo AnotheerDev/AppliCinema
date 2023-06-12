@@ -128,13 +128,13 @@ class PersonneController
     public function castingDetails()
     {
         $pdo = Connect::seConnecter();
-    
+
         $requeteFilms = $pdo->query("
             SELECT *
             FROM film
         ");
         $films = $requeteFilms->fetchAll(\PDO::FETCH_ASSOC);
-    
+
         $requete = $pdo->query("
             SELECT f.titre, CONCAT(p.nom,' ', p.prenom) AS nom, r.nom as roleNom, p.idPersonne, f.idFilm
             FROM casting c
@@ -143,8 +143,62 @@ class PersonneController
             INNER JOIN role r ON c.idRole = r.idRole
             INNER JOIN personne p ON c.idActeur = p.idPersonne
         ");
-    
+
         require "view/casting.php";
     }
 
+
+    public function modifierPersonne()
+    {
+        $pdo = Connect::seConnecter();
+
+        $requete = $pdo->prepare("
+            SELECT *
+            FROM personne
+        ");
+        $requete->execute();
+        $personnes = $requete->fetchAll(\PDO::FETCH_ASSOC);
+
+        // var_dump($_POST);
+        // die;
+
+        $personne = null; // Initialise la variable $personne à null
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['modifier'])) {
+            $idPersonne = $_POST['personne'];
+            $nom = $_POST['nom'];
+            $prenom = $_POST['prenom'];
+            $sexe = $_POST['sexe'];
+            $dateNaissance = $_POST['dateNaissance'];
+
+            // Effectuer les opérations de modification en utilisant les valeurs récupérées
+            $requeteModification = $pdo->prepare("
+                UPDATE personne
+                SET nom = :nom, prenom = :prenom, sexe = :sexe, dateNaissance = :dateNaissance
+                WHERE idPersonne = :idPersonne
+            ");
+            $requeteModification->bindParam(':nom', $nom);
+            $requeteModification->bindParam(':prenom', $prenom);
+            $requeteModification->bindParam(':sexe', $sexe);
+            $requeteModification->bindParam(':dateNaissance', $dateNaissance);
+            $requeteModification->bindParam(':idPersonne', $idPersonne);
+            $requeteModification->execute();
+
+            // Afficher un message de succès ou rediriger vers une page de confirmation
+            echo "Les informations ont été modifiées avec succès.";
+        } elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['personne'])) {
+            $idPersonne = $_POST['personne'];
+
+            // Effectuer une requête pour récupérer les informations de la personne sélectionnée par son id
+            $requetePersonne = $pdo->prepare("
+                SELECT *
+                FROM personne
+                WHERE idPersonne = :idPersonne
+            ");
+            $requetePersonne->bindParam(':idPersonne', $idPersonne);
+            $requetePersonne->execute();
+            $personne = $requetePersonne->fetch(\PDO::FETCH_ASSOC);
+        }
+
+        require "view/modifierPersonne.php";
+    }
 }
