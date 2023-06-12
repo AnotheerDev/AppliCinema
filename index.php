@@ -79,5 +79,11 @@ if (isset($_GET["action"])) {
         case "casting":
             $ctrlPersonne->castingDetails();
             break;
+
+
+        case "modifierPersonne":
+            $ctrlPersonne->modifierPersonne();
+            break;
     }
+
 }
