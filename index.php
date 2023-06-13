@@ -4,7 +4,7 @@
 // En utilisant prepare() et execute() avec une requête préparée, vous bénéficiez des avantages de la sécurité offerte par les requêtes préparées, même si la requête elle-même ne contient pas de paramètres dynamiques. ( injection sql)
 
 // reste à faire : pouvoir tout éditer 
-//                 que tout soit cliquable
+//                 que tout soit cliquable = fait 
 //                 ajout de css
 //                 faire fonctionner le casting dans le details star/personne
 use Controller\HomeController;

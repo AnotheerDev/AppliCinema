@@ -10,3 +10,126 @@
 a {
     text-decoration: none;
 }
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+
+        /* VUE HOME */
+#header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+}
+
+#header h1 {
+    margin: 0;
+    font-size: 30px;
+}
+
+#content {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f7f7f7;
+}
+
+#content h2 {
+    margin-top: 0;
+}
+
+#content ol {
+    padding-left: 20px;
+}
+
+#footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+#footer h3 {
+    margin: 0;
+    font-size: 24px;
+}
+
+#footer p {
+    margin: 10px 0;
+}
+
+
+        /* VUE FILMS ET ACTEURS - REALISATEURS ET GENRE*/
+.uk-label {
+    display: inline-block;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.uk-label-warning {
+    display: flex;
+    justify-content: center;
+    background-color: #ffcc00;
+    color: #000;
+}
+
+table.uk-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table.uk-table thead th {
+    background-color: #f2f2f2;
+    padding: 10px;
+    text-align: left;
+}
+
+table.uk-table tbody td {
+    padding: 10px;
+    border-top: 1px solid #ccc;
+}
+
+table.uk-table a {
+    text-decoration: none;
+    color: #000;
+}
+
+
+        /* VUE CASTING */
+#divCasting {
+    font-weight: bold;
+}
+
+#pCasting {
+    display: flex;
+    justify-content: center;
+    background-color: #ffcc00;
+    color: #000;
+    border-radius: 5px;
+}
+
+#tCasting {
+    width: 100%;
+    border-collapse: collapse;
+}
+    
+#thCasting {
+    background-color: #f2f2f2;
+    padding: 10px;
+    text-align: left;
+}
+    
+#tdCasting {
+    padding: 10px;
+    border-top: 1px solid #ccc;
+}
+    
+#aCasting {
+    text-decoration: none;
+    color: #000;
+}

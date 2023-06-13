@@ -2,29 +2,30 @@
 ob_start();
 ?>
 
-<p> Il y a <?= $requete->rowCount() ?> castings </p>
+<div id="divCasting">
+    <p id="pCasting"> Il y a <?= $requete->rowCount() ?> castings </p>
 
-<table>
-    <thread>
-        <tr>
-            <th>Film</th>
-            <th> Acteur </th>
-            <th>Role</th>
-        </tr>
-    </thread>
-
-    <tbody>
-        <?php
-        foreach ($requete->fetchAll() as $casting) { ?>
+    <table id="tCasting">
+        <thread>
             <tr>
-                <td><a href="index.php?action=filmDetails&id=<?= $casting["idFilm"] ?>"><?= $casting["titre"] ?></a></td>
-                <td><a href="index.php?action=personneDetails&id=<?= $casting["idPersonne"] ?>"><?= $casting["nom"] ?></a></td>
-                <td><?= $casting["roleNom"] ?></td>
+                <th id="thCasting">Film</th>
+                <th id="thCasting"> Acteur </th>
+                <th id="thCasting">Role</th>
             </tr>
-        <?php } ?>
-    </tbody>
-</table>
+        </thread>
 
+        <tbody>
+            <?php
+            foreach ($requete->fetchAll() as $casting) { ?>
+                <tr>
+                    <td id="tdCasting"><a id="aCasting" href="index.php?action=filmDetails&id=<?= $casting["idFilm"] ?>"><?= $casting["titre"] ?></a></td>
+                    <td id="tdCasting"><a id="aCasting" href="index.php?action=personneDetails&id=<?= $casting["idPersonne"] ?>"><?= $casting["nom"] ?></a></td>
+                    <td id="tdCasting"><?= $casting["roleNom"] ?></td>
+                </tr>
+            <?php } ?>
+        </tbody>
+    </table>
+</div>
 
 <?php
 
