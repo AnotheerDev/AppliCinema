@@ -3,10 +3,12 @@
 
 // En utilisant prepare() et execute() avec une requête préparée, vous bénéficiez des avantages de la sécurité offerte par les requêtes préparées, même si la requête elle-même ne contient pas de paramètres dynamiques. ( injection sql)
 
-// reste à faire : pouvoir tout éditer 
+// reste à faire : pouvoir tout éditer = fait
 //                 que tout soit cliquable = fait 
-//                 ajout de css
+//                 ajout de css = en cours
 //                 faire fonctionner le casting dans le details star/personne
+//                  faire le remove
+//                  ajouter les acteurs et roles dans les films
 use Controller\HomeController;
 use Controller\FilmController;
 use Controller\GenreController;
