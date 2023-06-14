@@ -4,28 +4,20 @@ ob_start();
 
 <p class="uk-label uk-label-warning">Il y a <?= $requete->rowCount() ?> films</p>
 
-<table class="uk-label uk-label-stripped">
-    <thead>
-        <tr>
-            <th>TITRE</th>
-            <th>ANNEE DE SORTIE</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php
-        foreach ($requete->fetchAll() as $film) {?>
-            <tr>
-                <td><a href="index.php?action=filmDetails&id=<?= $film["idFilm"] ?>"><?= $film["titre"] ?></a></td>
-                <td><?= date('Y', strtotime($film["dateSortie"])) ?></td>
-            </tr>
-        <?php } ?>
-    </tbody>
-</table>
-
-
+<div class="film-container">
+    <?php
+    foreach ($requete->fetchAll() as $film) { ?>
+        <div class="film-card">
+            <p class="film-title"><a href="index.php?action=filmDetails&id=<?= $film["idFilm"] ?>"><?= $film["titre"] ?></a></p>
+            <img clas="film-affiche" src="<?= $film["afficheFilm"] ?>">
+            <p class="film-year"><?= date('Y', strtotime($film["dateSortie"])) ?></p>
+        </div>
+    <?php } ?>
+</div>
 
 <?php
 
 $content = ob_get_clean();
 $title = "films";
 require "template.php";
+?>
