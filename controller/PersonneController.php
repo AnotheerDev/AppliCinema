@@ -62,12 +62,18 @@ class PersonneController
 
             ($nom = filter_input(INPUT_POST, "nom", FILTER_SANITIZE_FULL_SPECIAL_CHARS)) ? false : $_SESSION['errors'][] = "Le nom est incorrecte";
             ($prenom = filter_input(INPUT_POST, "prenom", FILTER_SANITIZE_FULL_SPECIAL_CHARS)) ? false : $_SESSION['errors'][] = "Le prénom est incorrecte";
-            ($sexe = filter_input(INPUT_POST, "sexe", FILTER_SANITIZE_FULL_SPECIAL_CHARS)) ? false : $_SESSION['errors'][] = "Le sexe est incorrecte";
+            $sexe = filter_input(INPUT_POST, "sexe", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             ($dateNaissance = filter_input(INPUT_POST, "dateNaissance", FILTER_SANITIZE_NUMBER_INT)) ? false : $_SESSION['errors'][] = "La date de naissance est incorrecte";
             $estActeur = isset($_POST['acteur']);
             $estRealisateur = isset($_POST['realisateur']);
 
-            if ($nom && $prenom && $sexe && $dateNaissance) {
+
+                // Vérifier si le sexe est valide (Homme ou Femme)
+            if (!in_array($sexe, ['Homme', 'Femme', 'Non Binaire'])) {
+                $_SESSION['errors'][] = "Le sexe doit être 'Homme' ou 'Femme' ou 'Non Binaire' ";
+            }
+
+            elseif ($nom && $prenom && $sexe && $dateNaissance) {
                 $pdo = Connect::seConnecter();
                 $sqlQuery = "INSERT INTO personne (nom, prenom, sexe, dateNaissance)
                                 VALUES (:nom, :prenom, :sexe, :dateNaissance)";

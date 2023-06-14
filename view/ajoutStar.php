@@ -8,7 +8,12 @@ ob_start();
 <form action="index.php?action=addPersonne" method="post">
     <input type="text" name="nom" maxlength="50" placeholder="Nom"><br>
     <input type="text" name="prenom" maxlength="50" placeholder="Prenom"><br>
-    <input type="text" name="sexe" maxlength="5" placeholder="Genre"><br>
+    <label for="sexe">Sexe :</label>
+    <select name="sexe" id="sexe">
+        <option value="Homme">Homme</option>
+        <option value="Femme">Femme</option>
+        <option value="Non Binaire">Non Binaire</option>
+    </select><br>
     <input type="date" name="dateNaissance"><br>
     <label for="acteur">Acteur :</label>
     <input type="checkbox" name="acteur" id="acteur">
