@@ -2,6 +2,46 @@
 ob_start();
 ?>
 
+<style>
+    form {
+        margin-bottom: 20px;
+        background-color: #f7f7f7;
+        padding: 20px;
+        border-radius: 5px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    select {
+        padding: 5px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+    }
+
+    input[type="submit"] {
+        padding: 5px 10px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .success-message {
+        color: green;
+        margin-bottom: 10px;
+    }
+
+    .error-message {
+        color: red;
+        margin-bottom: 10px;
+    }
+</style>
 
 <p>Ajouter une nouvelle personne : </p>
 
@@ -14,6 +54,7 @@ ob_start();
         <option value="Femme">Femme</option>
         <option value="Non Binaire">Non Binaire</option>
     </select><br>
+    <label for="acteur">Date de naissance :</label>
     <input type="date" name="dateNaissance"><br>
     <label for="acteur">Acteur :</label>
     <input type="checkbox" name="acteur" id="acteur">
