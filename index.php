@@ -15,7 +15,7 @@ use Controller\PersonneController;
 spl_autoload_register(function ($class_name) {
     include $class_name . '.php';
 });
-
+session_start();
 
 $ctrlHome = new HomeController();
 $ctrlFilm = new FilmController();
