@@ -94,6 +94,10 @@ if (isset($_GET["action"])) {
         case "addGenre":
             $ctrlGenre->addGenre();
             break;
-    }
 
+
+        case "addCasting":
+            $ctrlFilm->addCasting();
+            break;
+    }
 }

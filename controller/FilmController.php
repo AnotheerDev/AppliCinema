@@ -195,4 +195,41 @@ class FilmController
 
         require "view/modifierFilm.php";
     }
+
+
+    public function addCasting()
+    {
+        $pdo = Connect::seConnecter();
+        $requeteActeurs = $pdo->query("SELECT a.idActeur, p.nom, p.prenom
+        FROM acteur a
+        JOIN personne p ON a.idPersonne = p.idPersonne;");
+        $requeteFilms = $pdo->query("SELECT idFilm, titre FROM film;");
+        $requeteRoles = $pdo->query("SELECT idRole, nom FROM role;");
+
+        // var_dump($_POST);
+        // die;
+        if (isset($_POST['submit'])) {
+            $filmItem = filter_input(INPUT_POST, "film", FILTER_SANITIZE_NUMBER_INT);
+            $acteurItem = filter_input(INPUT_POST, "acteur", FILTER_SANITIZE_NUMBER_INT);
+            $roleItem = filter_input(INPUT_POST, "role", FILTER_SANITIZE_NUMBER_INT);
+
+
+
+            if ($filmItem && $acteurItem && $roleItem) {
+                $sqlQuery =  "INSERT INTO casting (idFilm ,idActeur ,idRole)
+                                VALUES (:idFilm, :idActeur, :idRole)";
+
+                $requete = $pdo->prepare($sqlQuery);
+                $requete->execute([
+                    'idFilm' => $filmItem,
+                    'idActeur' => $acteurItem,
+                    'idRole' => $roleItem,
+                ]);
+            }
+        }
+
+
+
+        require 'view/ajoutCasting.php';
+    }
 }

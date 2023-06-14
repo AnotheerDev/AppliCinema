@@ -45,6 +45,7 @@
                         <a class="dropdown-item" href="index.php?action=ajoutStar">AJOUT STARS</a>
                         <a class="dropdown-item" href="index.php?action=addFilm">AJOUT FILM</a>
                         <a class="dropdown-item" href="index.php?action=addGenre">AJOUT GENRE</a>
+                        <a class="dropdown-item" href="index.php?action=addCasting">AJOUT CASTING</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
