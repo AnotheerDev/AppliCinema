@@ -12,7 +12,7 @@ class FilmController
         // var_dump($pdo);
         //die;  
         $requete = $pdo->prepare("
-            SELECT titre, dateSortie, idFilm
+            SELECT *
             FROM film
         ");
         $requete->execute();
@@ -146,7 +146,7 @@ class FilmController
                     echo "un problème est survenu";
                 }
                 if ($fileName) {
-                    $afficheFilm = "./public/upload/'.$fileName";
+                    $afficheFilm = "public/upload/" . $fileName;
                 }
             }
             // var_dump($_FILES);
