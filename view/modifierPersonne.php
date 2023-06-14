@@ -63,6 +63,7 @@ ob_start();
         <select name="sexe" id="sexe">
             <option value="Homme" <?= $personne['sexe'] === 'Homme' ? 'selected' : '' ?>>Homme</option>
             <option value="Femme" <?= $personne['sexe'] === 'Femme' ? 'selected' : '' ?>>Femme</option>
+            <option value="Non Binaire" <?= $personne['sexe'] === 'Non Binaire' ? 'selected' : '' ?>>Non Binaire</option>
         </select><br>
         <label for="date_naissance">Date de naissance :</label>
         <input type="date" name="dateNaissance" id="dateNaissance" value="<?= $personne['dateNaissance'] ?>"><br>
