@@ -31,7 +31,7 @@ ob_start();
     <p>Durée : <?= $film['duree'] ?> minutes</p>
     <p>Synopsis : <?= $film['synopsis'] ?></p>
     <p>Note : <?= $film['note'] ?></p>
-    <p>Réalisateur : <?= $film['nom'] ?></p>
+    <p>Réalisateur : <a href="index.php?action=personneDetails&id=<?= $film["idPersonne"] ?>"><?= $film['nom'] ?></a></p>
 </div>
 
 <?php
