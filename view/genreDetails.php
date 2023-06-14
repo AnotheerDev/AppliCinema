@@ -48,7 +48,9 @@ ob_start();
             $film = $requeteFilm->fetch();
 
             // Afficher les détails du film
-            echo "<li>" . $film['titre'] . "</li>";
+            // echo "<li>" . $film['titre'] . "</li>";
+            echo "<li><a href='index.php?action=filmDetails&id=" . $film["idFilm"] . "'>" . $film["titre"] . "</a></li>";
+
         }
         ?>
     </ul>
