@@ -57,10 +57,13 @@ class PersonneController
     public function addPersonne()
     {
         if (isset($_POST['submit'])) {
-            $nom = filter_input(INPUT_POST, "nom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $prenom = filter_input(INPUT_POST, "prenom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $sexe = filter_input(INPUT_POST, "sexe", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $dateNaissance = filter_input(INPUT_POST, "dateNaissance", FILTER_SANITIZE_NUMBER_INT);
+
+            $_SESSION["errors"] = [];
+
+            ($nom = filter_input(INPUT_POST, "nom", FILTER_SANITIZE_FULL_SPECIAL_CHARS)) ? false : $_SESSION['errors'][] = "Le nom est incorrecte";
+            ($prenom = filter_input(INPUT_POST, "prenom", FILTER_SANITIZE_FULL_SPECIAL_CHARS)) ? false : $_SESSION['errors'][] = "Le prénom est incorrecte";
+            ($sexe = filter_input(INPUT_POST, "sexe", FILTER_SANITIZE_FULL_SPECIAL_CHARS)) ? false : $_SESSION['errors'][] = "Le sexe est incorrecte";
+            ($dateNaissance = filter_input(INPUT_POST, "dateNaissance", FILTER_SANITIZE_NUMBER_INT)) ? false : $_SESSION['errors'][] = "La date de naissance est incorrecte";
             $estActeur = isset($_POST['acteur']);
             $estRealisateur = isset($_POST['realisateur']);
 
@@ -77,6 +80,7 @@ class PersonneController
                     'dateNaissance' => $dateNaissance
                 ]);
 
+                $_SESSION['messageSucces'] = 'La personne ' . $nom . ' ' . $prenom . ' a bien été ajoutée !';
                 $idPersonne = $pdo->lastInsertId(); // Récupère l'ID de la personne insérée
 
                 if ($estActeur) {
@@ -98,6 +102,12 @@ class PersonneController
                         'idPersonne' => $idPersonne
                     ]);
                 }
+            } else {
+                if (isset($_SESSION["errors"])) {
+                    foreach ($_SESSION["errors"] as $error) {
+                        $_SESSION['messageAlert'][] = $error;
+                    }
+                }
             }
         }
         self::showAjoutStar();
@@ -107,6 +117,7 @@ class PersonneController
     public function addRole()
     {
         if (isset($_POST['submit'])) {
+
             $nom = filter_input(INPUT_POST, "nomRole", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             // var_dump($nom);
             // die;
@@ -114,13 +125,18 @@ class PersonneController
                 $pdo = Connect::seConnecter();
                 $sqlQuery =  "INSERT INTO role (nom)
                                 VALUE (:nom)";
-
                 $requete = $pdo->prepare($sqlQuery);
                 $requete->execute([
                     'nom' => $nom
                 ]);
-            }
+                $_SESSION['messageSucces'] = 'Le rôle ' . $nom . ' a bien été ajouté !';
+                // var_dump($nom);
+                // die;
+            
+            } else {
+            $_SESSION['messageSucces'] = 'Le rôle ne peut pas être ajouté !';
         }
+    }
         self::showAjoutStar();
     }
 
