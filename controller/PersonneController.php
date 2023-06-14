@@ -134,7 +134,7 @@ class PersonneController
                 // die;
             
             } else {
-            $_SESSION['messageSucces'] = 'Le rôle ne peut pas être ajouté !';
+            $_SESSION['messageAlert'] = 'Le rôle ne peut pas être ajouté !';
         }
     }
         self::showAjoutStar();
