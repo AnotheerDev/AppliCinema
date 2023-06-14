@@ -91,4 +91,25 @@ class GenreController
         header("Location: index.php?action=genre");
         exit();
     }
+
+
+    public function addGenre()
+    {
+        if (isset($_POST['submit'])) {
+            $nom = filter_input(INPUT_POST, "nom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            // var_dump($nom);
+            // die;
+            if ($nom) {
+                $pdo = Connect::seConnecter();
+                $sqlQuery =  "INSERT INTO genre (nom)
+                                VALUE (:nom)";
+
+                $requete = $pdo->prepare($sqlQuery);
+                $requete->execute([
+                    'nom' => $nom
+                ]);
+            }
+        }
+        require 'view/ajoutGenre.php';
+    }
 }

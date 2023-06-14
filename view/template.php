@@ -44,6 +44,7 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="index.php?action=ajoutStar">AJOUT STARS</a>
                         <a class="dropdown-item" href="index.php?action=addFilm">AJOUT FILM</a>
+                        <a class="dropdown-item" href="index.php?action=addGenre">AJOUT GENRE</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">

@@ -89,6 +89,11 @@ if (isset($_GET["action"])) {
         case "modifierFilm":
             $ctrlFilm->modifierFilm();
             break;
+
+
+        case "addGenre":
+            $ctrlGenre->addGenre();
+            break;
     }
 
 }
