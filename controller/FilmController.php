@@ -41,10 +41,18 @@ class FilmController
         $requete->bindParam(':id', $id, \PDO::PARAM_INT);
         $requete->execute();
         $film = $requete->fetch();
-        // $data = [
-        //     'film' => $film
-        // ];
-
+        
+        $requeteCasting = $pdo->prepare("
+            SELECT role.nom, CONCAT(personne.prenom,' ',personne.nom) AS acteur, casting.idFilm, casting.idActeur, casting.idRole, personne.idPersonne
+            FROM casting
+            INNER JOIN role ON casting.idRole = role.idRole
+            INNER JOIN acteur ON casting.idActeur = acteur.idActeur
+            INNER JOIN personne ON acteur.idPersonne = personne.idPersonne
+            INNER JOIN film ON casting.idFilm = film.idFilm
+            WHERE film.idFilm = :id;
+        ");
+        $requeteCasting->bindparam("id", $id);
+        $requeteCasting->execute();
         // Afficher la vue des détails du film
         require 'view/filmDetails.php';
     }

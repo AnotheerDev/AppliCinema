@@ -33,6 +33,15 @@ ob_start();
     <p>Synopsis : <?= $film['synopsis'] ?></p>
     <p>Note : <?= $film['note'] ?></p>
     <p>Réalisateur : <a href="index.php?action=personneDetails&id=<?= $film["idPersonne"] ?>"><?= $film['nom'] ?></a></p>
+
+    <div class="divFilm">Casting : <br>
+        <?php
+        // boucle pour afficher les castings du films
+        foreach ($requeteCasting->fetchAll() as $casting){?>
+            <?=$casting["nom"]?> : <a href='index.php?action=personne&id=<?=$casting['idPersonne']?>'><?=$casting["acteur"]?></a><br>
+            <?php
+        }
+        ?></div>
 </div>
 
 <?php
