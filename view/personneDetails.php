@@ -27,6 +27,7 @@ ob_start();
 
 <div class="person-details">
     <h2><?= $personne['nom'] ?> <?= $personne['prenom'] ?></h2>
+    <img src="public/upload/561836.jpg-c_310_420_x-f_jpg-q_x-xxyxx.jpg">
     <p>Est un(e) : <?= $personne['sexe'] ?></p>
     <p>Né(e) le : <?= date('d / m / Y', strtotime($personne['dateNaissance'])) ?></p>
     <p>Est un(e) :
