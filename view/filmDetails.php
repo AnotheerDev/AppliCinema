@@ -27,6 +27,7 @@ ob_start();
 
 <div class="film-details">
     <h2><?= $film['titre'] ?></h2>
+    <img src="<?= $film['afficheFilm'] ?>">
     <p>Date de sortie : <?= $film['dateSortie'] ?></p>
     <p>Durée : <?= $film['duree'] ?> minutes</p>
     <p>Synopsis : <?= $film['synopsis'] ?></p>
