@@ -102,5 +102,10 @@ if (isset($_GET["action"])) {
         case "addCasting":
             $ctrlFilm->addCasting();
             break;
+
+
+        case "roleDetails":
+            $ctrlFilm->roleDetails($id);
+            break;
     }
 }

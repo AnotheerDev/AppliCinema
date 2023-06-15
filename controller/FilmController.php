@@ -41,7 +41,7 @@ class FilmController
         $requete->bindParam(':id', $id, \PDO::PARAM_INT);
         $requete->execute();
         $film = $requete->fetch();
-        
+
         $requeteCasting = $pdo->prepare("
             SELECT role.nom, CONCAT(personne.prenom,' ',personne.nom) AS acteur, casting.idFilm, casting.idActeur, casting.idRole, personne.idPersonne
             FROM casting
@@ -239,5 +239,24 @@ class FilmController
 
 
         require 'view/ajoutCasting.php';
+    }
+
+
+    public function roleDetails($id)
+    {
+        $id = filter_var($id, FILTER_VALIDATE_INT);
+        $pdo = Connect::seConnecter();
+        $requete = $pdo->prepare("
+            SELECT role.idRole, role.nom, acteur.idActeur, personne.idPersonne
+            FROM role
+            LEFT JOIN casting ON casting.idRole = role.idRole
+            LEFT JOIN acteur ON casting.idActeur = acteur.idActeur
+            LEFT JOIN personne ON acteur.idActeur = personne.idPersonne
+            WHERE role.idRole = :id
+        ");
+        $requete->bindParam(':id', $id, \PDO::PARAM_INT);
+        $requete->execute();
+
+        require "view/roleDetails.php";
     }
 }
