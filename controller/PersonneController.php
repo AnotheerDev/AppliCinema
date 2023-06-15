@@ -68,12 +68,10 @@ class PersonneController
             $estRealisateur = isset($_POST['realisateur']);
 
 
-                // Vérifier si le sexe est valide (Homme ou Femme)
+            // Vérifier si le sexe est valide (Homme ou Femme)
             if (!in_array($sexe, ['Homme', 'Femme', 'Non Binaire'])) {
                 $_SESSION['errors'][] = "Le sexe doit être 'Homme' ou 'Femme' ou 'Non Binaire' ";
-            }
-
-            elseif ($nom && $prenom && $sexe && $dateNaissance) {
+            } elseif ($nom && $prenom && $sexe && $dateNaissance) {
                 $pdo = Connect::seConnecter();
                 $sqlQuery = "INSERT INTO personne (nom, prenom, sexe, dateNaissance)
                                 VALUES (:nom, :prenom, :sexe, :dateNaissance)";
@@ -138,11 +136,11 @@ class PersonneController
                 $_SESSION['messageSucces'] = 'Le rôle ' . $nom . ' a bien été ajouté !';
                 // var_dump($nom);
                 // die;
-            
+
             } else {
-            $_SESSION['messageAlert'] = 'Le rôle ne peut pas être ajouté !';
+                $_SESSION['messageAlert'] = 'Le rôle ne peut pas être ajouté !';
+            }
         }
-    }
         self::showAjoutStar();
     }
 
@@ -163,7 +161,7 @@ class PersonneController
             INNER JOIN film f ON c.idFilm = f.idFilm
             INNER JOIN acteur a ON c.idActeur = a.idActeur
             INNER JOIN role r ON c.idRole = r.idRole
-            INNER JOIN personne p ON c.idActeur = p.idPersonne
+            INNER JOIN personne p ON a.idActeur = p.idPersonne
         ");
 
         require "view/casting.php";

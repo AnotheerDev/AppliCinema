@@ -247,16 +247,18 @@ class FilmController
         $id = filter_var($id, FILTER_VALIDATE_INT);
         $pdo = Connect::seConnecter();
         $requete = $pdo->prepare("
-            SELECT role.idRole, role.nom, acteur.idActeur, personne.idPersonne
+            SELECT role.idRole, role.nom AS nom, acteur.idActeur, personne.idPersonne, CONCAT(personne.prenom,' ',personne.nom) AS actor
             FROM role
-            LEFT JOIN casting ON casting.idRole = role.idRole
-            LEFT JOIN acteur ON casting.idActeur = acteur.idActeur
-            LEFT JOIN personne ON acteur.idActeur = personne.idPersonne
+            INNER JOIN casting ON casting.idRole = role.idRole
+            INNER JOIN acteur ON casting.idActeur = acteur.idActeur
+            INNER JOIN personne ON acteur.idPersonne = personne.idPersonne
             WHERE role.idRole = :id
         ");
         $requete->bindParam(':id', $id, \PDO::PARAM_INT);
         $requete->execute();
-
+        $castings = $requete->fetchAll();
+        // var_dump($casting);
+        // die;
         require "view/roleDetails.php";
     }
 }
