@@ -191,3 +191,34 @@ table.uk-table a {
 .film-card a:hover {
     text-decoration: none;
 }
+
+        /* VUE ACTEURS - REALISATEURS FLEX CARD */
+
+.star-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.star-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+    height: 300px;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    text-decoration: none;
+}
+
+.actor-affiche {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    width: 150px;
+    height: 200px;
+    margin-bottom: 0;
+}
