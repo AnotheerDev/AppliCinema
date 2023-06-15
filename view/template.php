@@ -34,9 +34,9 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="index.php?action=genre">GENRE <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item active">
+                <!-- <li class="nav-item active">
                     <a class="nav-link" href="index.php?action=casting">CASTING <span class="sr-only">(current)</span></a>
-                </li>
+                </li> -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         AJOUT
