@@ -7,13 +7,16 @@ ob_start();
 <div class="film-container">
     <?php
     foreach ($requete->fetchAll() as $film) { ?>
-        <div class="film-card">
-            <p class="film-title"><a href="index.php?action=filmDetails&id=<?= $film["idFilm"] ?>"><?= $film["titre"] ?></a></p>
-            <img clas="film-affiche" src="<?= $film["afficheFilm"] ?>">
-            <p class="film-year"><?= date('Y', strtotime($film["dateSortie"])) ?></p>
-        </div>
+        <a href="index.php?action=filmDetails&id=<?= $film["idFilm"] ?>">
+            <div class="film-card">
+                <p class="film-title"><?= $film["titre"] ?></p>
+                <img class="film-affiche" src="<?= $film["afficheFilm"] ?>">
+                <p class="film-year"><?= date('Y', strtotime($film["dateSortie"])) ?></p>
+            </div>
+        </a>
     <?php } ?>
 </div>
+
 
 <?php
 

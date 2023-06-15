@@ -16,7 +16,7 @@ body {
     margin: 0;
     padding: 0;
     background-image : url(https://allemand-pedagogie.web.ac-grenoble.fr/sites/allemand-pedagogie.web.ac-grenoble.fr/files/cinema.jpg);
-    background-size: 100%;
+    background-size: cover;
     opacity: 0.9;
 }
 
@@ -145,24 +145,49 @@ table.uk-table a {
 }
 
 .film-card {
-    flex-basis: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+    height: 300px;
     margin: 10px;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #f9f9f9;
+    text-decoration: none;
 }
 
+
+
 .film-title {
+    display : flex;
+    justify-content: center;
     text-align: center;
+    width: 230px;
+    height: 50px;
+    margin-bottom: 0;
 }
 
 .film-year {
     color: #888;
+    margin-bottom: 0;
 }
 
 .film-affiche {
     display: flex;
     justify-content: center; 
     align-items: center; 
+    width: 150px;
+    height: 200px;
+    margin-bottom: 0;
+}
+
+.film-card a {
+    text-decoration: none;
+}
+
+.film-card a:hover {
+    text-decoration: none;
 }
