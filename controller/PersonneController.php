@@ -224,4 +224,34 @@ class PersonneController
         require "view/modifierPersonne.php";
         exit();
     }
+
+
+    public function suppPersonne()
+    {
+        $pdo = Connect::seConnecter();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $idPersonne = filter_input(INPUT_POST, 'personne', FILTER_VALIDATE_INT);
+
+            if ($idPersonne) {
+                // Supprimer la personne de la base de données
+                $requeteSuppression = $pdo->prepare("
+                    DELETE FROM personne
+                    WHERE idPersonne = :idPersonne
+                ");
+                $requeteSuppression->bindParam(':idPersonne', $idPersonne, \PDO::PARAM_INT);
+                $requeteSuppression->execute();
+                $_SESSION['messageSucces'] = 'La personne a bien été supprimée !';
+            }
+        }
+
+        $requete = $pdo->prepare("
+            SELECT *
+            FROM personne
+        ");
+        $requete->execute();
+        $personnes = $requete->fetchAll(\PDO::FETCH_ASSOC);
+
+        require "view/suppPersonne.php";
+    }
 }

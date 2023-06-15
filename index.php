@@ -3,11 +3,14 @@
 
 // En utilisant prepare() et execute() avec une requête préparée, vous bénéficiez des avantages de la sécurité offerte par les requêtes préparées, même si la requête elle-même ne contient pas de paramètres dynamiques. ( injection sql)
 
+// Pour la suppression j'ai modifié dans la BDD pour que si je supprime une personnne(idPersonne) ça supprimer aussi son idActeur ou idRealisateur si il en a un pour se faire j'ai  été dans la BDD et clé étrangère et " lors d'un DELETE " mettre sur CASCADE
+// par contre pour réalisateur pour que ça ne supprime pas les films qui lui sont liés j'ai été dans la BDD pour la clé étrangère de film et " lors d'un DELETE " mettre sur SET NULL
+
 // reste à faire : pouvoir tout éditer = fait
 //                 que tout soit cliquable = fait 
 //                 ajout de css = fait
 //                 faire fonctionner le casting dans le details star/personne = fait 
-//                  faire le remove
+//                  faire le remove = fait 
 //                  ajouter les acteurs et roles dans les films = fait
 //                  ajouter une vue avec les roles et les acteurs qui ont joué ces roles ( vue ) = fait
 use Controller\HomeController;
@@ -106,6 +109,11 @@ if (isset($_GET["action"])) {
 
         case "roleDetails":
             $ctrlFilm->roleDetails($id);
+            break;
+
+
+        case "suppPersonne":
+            $ctrlPersonne->suppPersonne();
             break;
     }
 }
