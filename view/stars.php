@@ -4,21 +4,17 @@ ob_start();
 
 <p class="uk-label uk-label-warning">Il y a <?= $requete->rowCount() ?> stars</p>
 
-<table class="uk-label uk-label-stripped">
-    <thead>
-        <tr>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php
-        foreach ($requete->fetchAll() as $personne) { ?>
-            <tr>
-                <td><a href="index.php?action=personneDetails&id=<?= $personne["idPersonne"] ?>"><?= $personne["nom"] ?></a></td>
-            </tr>
-        <?php } ?>
-    </tbody>
-</table>
+<div class="star-container">
+    <?php
+    foreach ($requete->fetchAll() as $personne) { ?>
+        <a href="index.php?action=personneDetails&id=<?= $personne["idPersonne"] ?>">
+            <div class="star-card">
+                <p><?= $personne["nom"] ?></p>
+                <img class="actor-affiche" src="public/upload/561836.jpg-c_310_420_x-f_jpg-q_x-xxyxx.jpg">
+            </div>
+        </a>
+    <?php } ?>
+</div>
 
 
 
