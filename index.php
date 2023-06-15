@@ -13,6 +13,7 @@
 //                  faire le remove = fait 
 //                  ajouter les acteurs et roles dans les films = fait
 //                  ajouter une vue avec les roles et les acteurs qui ont joué ces roles ( vue ) = fait
+//                  Quentin me dit plus de css et de mettre dans la vue role les films dans lequel l'acteur à joué ce role
 use Controller\HomeController;
 use Controller\FilmController;
 use Controller\GenreController;
