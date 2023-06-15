@@ -37,9 +37,9 @@ ob_start();
     <div class="divFilm">Casting : <br>
         <?php
         // boucle pour afficher les castings du films
-        foreach ($requeteCasting->fetchAll() as $casting){?>
-            <?=$casting["nom"]?> : <a href='index.php?action=personne&id=<?=$casting['idPersonne']?>'><?=$casting["acteur"]?></a><br>
-            <?php
+        foreach ($requeteCasting->fetchAll() as $casting) { ?>
+            <?= $casting["nom"] ?> : <a href='index.php?action=personneDetails&id=<?= $casting['idPersonne'] ?>'><?= $casting["acteur"] ?></a><br>
+        <?php
         }
         ?></div>
 </div>
