@@ -5,10 +5,11 @@
 
 // reste à faire : pouvoir tout éditer = fait
 //                 que tout soit cliquable = fait 
-//                 ajout de css = en cours
+//                 ajout de css = fait
 //                 faire fonctionner le casting dans le details star/personne
 //                  faire le remove
-//                  ajouter les acteurs et roles dans les films
+//                  ajouter les acteurs et roles dans les films = fait
+//                  ajouter une vue avec les roles et les acteurs qui ont joué ces roles ( vue )
 use Controller\HomeController;
 use Controller\FilmController;
 use Controller\GenreController;
